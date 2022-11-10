@@ -18,7 +18,7 @@ public class UserDao {
         return con;
     }
 
-    public static int insertUser(User u) throws ClassNotFoundException, SQLException {
+    public static void insertUser(User u) throws ClassNotFoundException, SQLException {
         Connection con = UserDao.getConnection();
         System.out.println("Conection Established Successfully");
         PreparedStatement ps = con.prepareStatement("insert into User(id, role_id, user_name ,pass_word, name, phone_number) values(?,?,?,?,?,?)");
@@ -30,7 +30,6 @@ public class UserDao {
         ps.setString(6, u.getPhone_number());
         int y = ps.executeUpdate();
         con.close();
-        return y;
     }
 
     public static User UserSearch(int u_id) throws ClassNotFoundException, SQLException {
@@ -41,15 +40,11 @@ public class UserDao {
         PreparedStatement ps = con.prepareStatement("SELECT * FROM User WHERE id=?");
         ps.setInt(1, u_id);
         ResultSet rs = ps.executeQuery();
+// co the them thong tin lay ra sau
         while (rs.next()) {
-            User e2 = new User();
-            e2.setId(rs.getInt("id"));
-            e2.setRole_id((rs.getInt("role_id")));
-            e2.setUser_name(rs.getString("user_name"));
-            e2.setPass_word(rs.getString("password"));
-            e2.setName(rs.getString("name"));
-            e2.setPhone_number(rs.getString("phone_number"));
+            u.setUser_name(rs.getString("user_name"));
         }
+
         System.out.println("name " + u.getUser_name());
         con.close();
         return u;
@@ -59,6 +54,8 @@ public class UserDao {
 
         Connection con = UserDao.getConnection();
         System.out.println("Conection Established Successfully updateUserInfo");
+        //id, name, age, mobNo, address, gender, bloodgroup, symptoms, department, doa, username, password
+
         PreparedStatement ps = con.prepareStatement("update User set id= ?, role_id = ?, user_name = ?,pass_word = ?, name = ?, phone_number = ? where id=?");
         ps.setInt(1, u.getId());
         ps.setInt(2, u.getRole_id());
@@ -72,7 +69,7 @@ public class UserDao {
         return u5;
     }
 
-    public static int deleteUser(int u_id) throws ClassNotFoundException, SQLException {
+    public static int deleteuser(int u_id) throws ClassNotFoundException, SQLException {
         Connection con = UserDao.getConnection();
         System.out.println("Conection Established Successfully");
         PreparedStatement ps = con.prepareStatement("delete from User where id=?");
@@ -103,17 +100,15 @@ public class UserDao {
 // test
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         User u = new User(2, 2, "user_name", "pass_word", "hoang", "124356");
+        insertUser(u);
+        User u1 = UserSearch(2);
         User u2 = new User(3, 3, "user_name", "pass_word", "a", "1243567");
-        insertUser(u);    
         insertUser(u2);
-        User u1 = UserSearch(1);
-        User u2_fixed = new User(3, 3, "user_name", "pass_word", "b", "1243567");
-        updateUserInfo(u2_fixed);
-        ArrayList<User> a = getUserRecords(1, 2);
+        ArrayList<User> a = new ArrayList<>();
         for(User u3 : a)
         {
             System.out.println(u3.getName());
         }
-        deleteUser(3);
+        deleteuser(3);
     }
 }
