@@ -1,18 +1,15 @@
 package com.jspmodel.models;
-
-import java.sql.Date;
-
+import java.time.LocalDateTime;
 public class Booking {
     private int id, user_id, service_id, employee_id;
-    private Date set_hour;
+    private LocalDateTime set_hour, created_at;
     private String note;
-    private Date created_at;
 
     public Booking() {
         super();
     }
 
-    public Booking(int id, int user_id, int service_id, int employee_id, Date set_hour, String note, Date created_at) {
+    public Booking(int id, int user_id, int service_id, int employee_id, LocalDateTime set_hour, String note, LocalDateTime created_at) {
         super();
         this.id = id;
         this.user_id = user_id;
@@ -39,7 +36,7 @@ public class Booking {
         return employee_id;
     }
 
-    public Date getSet_hour() {
+    public LocalDateTime getSet_hour() {
         return set_hour;
     }
 
@@ -47,7 +44,7 @@ public class Booking {
         return note;
     }
 
-    public Date getCreated_at() {
+    public LocalDateTime getCreated_at() {
         return created_at;
     }
 
@@ -67,7 +64,7 @@ public class Booking {
         this.employee_id = employee_id;
     }
 
-    public void setSet_hour(Date set_hour) {
+    public void setSet_hour(LocalDateTime set_hour) {
         this.set_hour = set_hour;
     }
 
@@ -75,8 +72,9 @@ public class Booking {
         this.note = note;
     }
 
-    public void setCreated_at(Date created_at) {
+    public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
     }
 }
+
 
