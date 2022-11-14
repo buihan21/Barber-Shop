@@ -1,24 +1,42 @@
 package com.jspmodel.models;
+
+import java.sql.Date;
+import java.sql.Time;
 import java.time.LocalDateTime;
+
 public class Booking {
     private int id, user_id, service_id, employee_id;
-    private LocalDateTime set_hour, created_at;
+    private Time set_hour;
+    private Date set_date;
     private String note;
 
     public Booking() {
         super();
     }
 
-    public Booking(int id, int user_id, int service_id, int employee_id, LocalDateTime set_hour, String note, LocalDateTime created_at) {
+    public Booking(int user_id, int service_id, int employee_id, Time set_hour,Date set_date, String note) {
         super();
-        this.id = id;
         this.user_id = user_id;
         this.service_id = service_id;
         this.employee_id = employee_id;
         this.set_hour = set_hour;
+        this.set_date = set_date;
         this.note = note;
-        this.created_at = created_at;
     }
+
+    public Booking(int user_id, int service_id, int employee_id, Time set_hour, Date set_date) {
+        this.user_id = user_id;
+        this.service_id = service_id;
+        this.employee_id = employee_id;
+        this.set_hour = set_hour;
+        this.set_date = set_date;
+    }
+
+    @Override
+    public String toString(){
+        return this.user_id+" "+this.service_id+" "+this.employee_id+" "+this.set_hour+" "+this.set_date;
+    }
+
 
     public int getId() {
         return id;
@@ -36,17 +54,22 @@ public class Booking {
         return employee_id;
     }
 
-    public LocalDateTime getSet_hour() {
+    public Time getSet_hour() {
         return set_hour;
+    }
+
+    public Date getSet_date() {
+        return set_date;
+    }
+
+    public void setSet_date(Date set_date) {
+        this.set_date = set_date;
     }
 
     public String getNote() {
         return note;
     }
 
-    public LocalDateTime getCreated_at() {
-        return created_at;
-    }
 
     public void setId(int id) {
         this.id = id;
@@ -64,17 +87,12 @@ public class Booking {
         this.employee_id = employee_id;
     }
 
-    public void setSet_hour(LocalDateTime set_hour) {
+    public void setSet_hour(Time set_hour) {
         this.set_hour = set_hour;
     }
 
     public void setNote(String note) {
         this.note = note;
     }
-
-    public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
-    }
 }
-
 
