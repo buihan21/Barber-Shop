@@ -32,6 +32,13 @@ public class Booking {
         this.set_date = set_date;
     }
 
+    public Booking(int service_id, int employee_id, Time set_hour, Date set_date) {
+        this.service_id = service_id;
+        this.employee_id = employee_id;
+        this.set_hour = set_hour;
+        this.set_date = set_date;
+    }
+
     @Override
     public String toString(){
         return this.user_id+" "+this.service_id+" "+this.employee_id+" "+this.set_hour+" "+this.set_date;

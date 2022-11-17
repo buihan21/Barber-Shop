@@ -12,11 +12,8 @@ public class DBConnect {
     private final String password = "sa";
 
     public Connection getConnection() throws Exception{
-        String url = "jdbc:sqlserver://" + serverName + ":" + portNumber + "\\" + instance + ";databaseName=" +dbName;
-        if (instance.trim().isEmpty()){
-            url = "jdbc:sqlserver://" + serverName + ":" + portNumber + ";databaseName=" + dbName;
-        }
-        Class.forName("om.microsoft.sqlserver.jdbc.SQLServerDriver");
-        return DriverManager.getConnection(url, userID, password);
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        System.out.println("Driver Registered");
+        return DriverManager.getConnection("jdbc:sqlserver://MSI\\MSSQLSERVER;databaseName=barberShop;encrypt=true;trustServerCertificate=true;","sa", "sa");
     }
 }
